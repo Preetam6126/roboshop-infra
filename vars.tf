@@ -18,6 +18,7 @@ variable "instances" {
             type = "t3.micro"
         }
          user = {
+         
             name = "user"
             type = "t3.micro"
         }
