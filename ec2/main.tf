@@ -50,7 +50,7 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = "${var.component}-${var.dev}-sg"
+    Name = "${var.component}-${var.env}-sg"
   }
 }
 
