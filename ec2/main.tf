@@ -79,6 +79,7 @@ variable "env" {
     default = "dev"
 }
 
-variable "password" {}
+##used in terraform
+##variable "password" {}
 
 
