@@ -1,7 +1,9 @@
+data "aws_caller_identity" "current" {}
+
 data "aws_ami" "example" {
   most_recent      = true
-  name_regex       = "Centos-8-DevOps-Practice"
-  owners           = ["973714476881"]
+  name_regex       = "devops-practice-with-ansible"
+  owners           = [data.aws_caller_identity.current.account.id]
 }
 
 resource "aws_instance" "ec2" {
@@ -24,10 +26,14 @@ resource "null_resource" "provisioner" {
         }
         
         inline = [
-        "git clone https://github.com/Preetam6126/roboshop-shell",
-        "cd roboshop-shell",
-        "sudo bash ${var.component}.sh ${var.password}"
+          "ansible-pull -i localhost, U https://github.com/Preetam6126/roboshop-ansible.git roboshop.yml -e role_name=${var.component}"   
         ]
+        #below set is during terraform practice with hard code password
+        # inline 
+        # "git clone https://github.com/Preetam6126/roboshop-shell",
+        # "cd roboshop-shell",
+        # "sudo bash ${var.component}.sh ${var.password}"
+        # ]
     }
     }
     

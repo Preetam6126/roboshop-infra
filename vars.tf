@@ -35,6 +35,7 @@ variable "instances" {
             name = "shipping"
             type = "t3.micro"
             password = "RoboShop@1"
+        
         }
          rabbitmq = {
             name = "rabbitmq"
