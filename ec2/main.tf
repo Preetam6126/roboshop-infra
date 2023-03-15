@@ -19,7 +19,7 @@ resource "null_resource" "provisioner" {
         }
         
         inline = [
-          "ansible-pull -i localhost, -U https://github.com/Preetam6126/roboshop-ansible roboshop.yml -e role_name=${var.component}"   
+          "ansible-pull -i localhost, -U https://github.com/Preetam6126/roboshop-ansible roboshop.yml -e role_name=${var.component} -e env=$(var.env)"
         ]
         #below set is during terraform practice with hard code password
         # inline 
