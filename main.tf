@@ -5,5 +5,7 @@ module "ec2" {
     instance_type = each.value["type"]
     ## below password is used during terraform practice but we manage passwords with ansible 
   ##  password = try(each.value["password"], "null") 
+  
+    env = var.env
 }
 

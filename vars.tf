@@ -1,5 +1,12 @@
 variable "instances" {}
-    
+variable "env" {}
+
+
+
+
+
+
+
     # default = {
     #     frontend = {
     #         name = "frontend"
