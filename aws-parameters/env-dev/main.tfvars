@@ -23,6 +23,10 @@ parameters = [
 
 
 
+secrets = [
+
+{ name = "test", value = "8080", type = "SecureString"}
+]
 
 
 
