@@ -25,7 +25,7 @@ parameters = [
 
 secrets = [
 
-{ name = "test", value = "8080", type = "SecureString"}
+{ name = "test2", value = "8080", type = "SecureString"}
 ]
 
 
