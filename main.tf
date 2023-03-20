@@ -4,6 +4,7 @@ module "ec2" {
     component = each.value["name"]
     instance_type = each.value["type"]
     env           = var.env
+    monitor       = try (each.value["monitor"], false)
     ## below password is used during terraform practice but we manage passwords with ansible 
   ##  password = try(each.value["password"], "null") 
   
