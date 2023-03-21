@@ -5,11 +5,13 @@ resource "aws_instance" "ec2" {
     iam_instance_profile = "${var.env}-${var.component}-role"
     tags = {
         Name = var.component
+        Monitor = var.monitor ? "yes" : "no"
     }
     
 }
 
 resource "null_resource" "provisioner" {
+  depends_on = [aws_route53_record.record]
   provisioner "remote-exec" {
         
         connection {
@@ -21,12 +23,7 @@ resource "null_resource" "provisioner" {
         inline = [
           "ansible-pull -i localhost, -U https://github.com/Preetam6126/roboshop-ansible roboshop.yml -e role_name=${var.component} -e env=${var.env}"
         ]
-        #below set is during terraform practice with hard code password
-        # inline 
-        # "git clone https://github.com/Preetam6126/roboshop-shell",
-        # "cd roboshop-shell",
-        # "sudo bash ${var.component}.sh ${var.password}"
-        # ]
+        
     }
     }
     
