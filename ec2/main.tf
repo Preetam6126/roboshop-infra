@@ -12,8 +12,8 @@ resource "aws_instance" "ec2" {
 
 resource "null_resource" "provisioner" {
   depends_on = [aws_route53_record.record]
- 
   provisioner "remote-exec" {
+  
         connection {
             host = aws_instance.ec2.public_ip
             user = "centos"
@@ -63,16 +63,13 @@ resource "aws_route53_record" "record" {
 }
 
 
-##used in terraform
-##variable "password" {}
 
 resource "aws_iam_policy" "ssm-policy" {
   name        = "${var.env}-${var.component}-ssm"
   path        = "/"
   description = "${var.env}-${var.component}-ssm"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
+
   policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
