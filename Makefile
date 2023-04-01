@@ -1,6 +1,6 @@
 git:
 	git pull
-	rm -rf .terafrom 
+	rm -rf .terrafrom 
 dev-apply: git
 	terraform init -backend-config=env-dev/state.tfvars
 	terraform apply -auto-approve -var-file=env-dev/main.tfvars
