@@ -7,5 +7,5 @@ module "vpc" {
   vpc_cidr = each.value["vpc_cidr"]
   
   }
-}
+
 
