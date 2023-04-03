@@ -39,13 +39,13 @@ vpc = {
         availability_zone = "us-east-1b"
       }
       db-az1 = {
-       name       = "db-az1"
-       cidr_block = "10.0.6.0/24"
+       name              = "db-az1"
+       cidr_block        = "10.0.6.0/24"
        availability_zone = "us-east-1a"
        }
       db-az2 = {
-        name     = "db-az2"
-        cidr_block = "10.0.7.0/24"
+        name              = "db-az2"
+        cidr_block        = "10.0.7.0/24"
         availability_zone = "us-east-1b"      
       }
      }
