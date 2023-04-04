@@ -28,6 +28,10 @@ module "vpc" {
 
 # }
 
+# output "vpc" {
+#   value = module.vpc
+# }
+
 output "vpc" {
-  value = module.vpc
+  value = local.private_subnets_ids
 }
