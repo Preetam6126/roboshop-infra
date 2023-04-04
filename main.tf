@@ -11,9 +11,6 @@ module "vpc" {
   public_subnets  = each.value["public_subnets"]
   private_subnets = each.value["private_subnets"]
   }
-# output "vpc" {
-#   value = module.vpc
-# }
 
 # module "docdb" {
 
@@ -23,7 +20,14 @@ module "vpc" {
   
 #   for_each = var.docdb
 #   engine   = each.value["engine"]
-  
-#   }
+#   backup_retention_period   = each.value["backup_retention_period"]
+#   preferred_backup_windowe   = each.value["preferred_backup_window"]
+#   skip_final_snapshot   = each.value["skip_final_snapshot"]
+#   engine_version   = each.value["engine_version"]
+#   subnet_ids   
 
-     
+# }
+
+output "vpc" {
+  value = module.vpc
+}
