@@ -2,9 +2,8 @@ locals {
 #   Private Subnets
 # private_subnets_ids = module.vpc.private_subnets
 
- private_subnets_ids = [for k, v in var.list : "${k} is ${v.id}"]
-
-}
+ private_subnets_ids = { for k, v in module.vpc["main"].private_subnets : k => v.id }
+ }
 
 # output "private_subnets" {
     
