@@ -15,15 +15,15 @@ module "vpc" {
 #   value = module.vpc
 # }
 
-module "docdb" {
+# module "docdb" {
 
-  source   = "git::https://github.com/Preetam6126/tf-module-docdb.git"
-  env      = var.env
-  tags     = var.tags
+#   source   = "git::https://github.com/Preetam6126/tf-module-docdb.git"
+#   env      = var.env
+#   tags     = var.tags
   
-  for_each = var.docdb
-  engine   = each.value["engine"]
+#   for_each = var.docdb
+#   engine   = each.value["engine"]
   
-  }
+#   }
 
      
