@@ -33,5 +33,5 @@ module "vpc" {
 # }
 
 output "vpc" {
-  value = local.private_subnets_ids
+  value = local.db_subnets_ids
 }

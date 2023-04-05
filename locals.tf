@@ -2,7 +2,8 @@ locals {
 #   Private Subnets
 # private_subnets_ids = module.vpc.private_subnets
 
- private_subnets_ids = { for k, v in module.vpc["main"].private_subnets : k => v.id }
+ # private_subnets_ids = { for k, v in module.vpc["main"].private_subnets : k => v.id }
+ db_subnets_ids = tolist([module.vpc["main"].private_subnets["db-az1"].id,module.vpc["main"].private_subnets["db-az2"].id])
  }
 
 # output "private_subnets" {
