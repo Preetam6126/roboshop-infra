@@ -81,4 +81,22 @@ rds = {
   }
 }
 
+elasticache = {
+  main = {
+    
+    engine               = "redis"
+    engine_version       = "3.2.10"
+    num_cache_nodes      = 1
+    node_type            = "cache.t3.micro"
+    
+      }
+    }
+    
+rabbitmq = {
+  main = {
   
+     instance_type = "t3.micro"  
+   
+   
+    }
+   }

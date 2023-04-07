@@ -47,6 +47,33 @@ module "rds" {
   instance_class          = each.value["instance_class"]
 }
 
+module "elasticache" {    
+
+  source   = "git::https://github.com/Preetam6126/tf-module-elasticache.git"
+  env      = var.env
+  tags     = var.tags
+  
+  subnet_ids              = local.db_subnets_ids
+  
+  for_each                = var.elasticache  
+  engine                  = each.value["engine"]
+  engine_version          = each.value["engine_version"]
+  num_cache_nodes         = each.value["num_cache_nodes"]
+  node_type               = each.value["node_type"]
+}
+
+module "rabbitmq" {    
+
+  source   = "git::https://github.com/Preetam6126/tf-module-rabbitmq.git"
+  env      = var.env
+  tags     = var.tags
+  
+  subnet_ids              = local.db_subnets_ids
+  
+  for_each                = var.rabbitmq  
+  instance_type           = each.value["instance_type"]
+}
+
 # output "vpc" {
 #   value = module.vpc
 # }
