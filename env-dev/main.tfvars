@@ -113,12 +113,23 @@ alb = {
    
    Private = {
    
-     subnet_name = "app"
-     name = "private"
-     internal = true
+     subnet_name        = "app"
+     name               = "private"
+     internal           = true
      load_balancer_type = "application"
      
      
      }
    
    }
+   
+   app = {
+   
+       catalogue = {
+       
+       component     = "catalogue"
+       instance_type = "t3.nano"
+       
+      }
+    }
+      

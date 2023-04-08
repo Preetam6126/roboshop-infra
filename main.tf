@@ -87,6 +87,17 @@ module "alb" {
      load_balancer_type = each.value["load_balancer_type"]
      subnets            = lookup(local.subnet_ids,each.value["subnet_name"],null)     
 }
+
+module "app" {
+    source   = "git::https://github.com/Preetam6126/tf-module-apps.git"
+    env      = var.env
+    tags     = var.tags
+    
+    for_each      = var.apps
+    component     = each.value["component"]
+    instance_type = each.value["instance_type"]
+  
+  }
 # output "vpc" {
 #   value = module.vpc
 # }
