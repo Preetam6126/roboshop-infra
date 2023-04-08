@@ -91,7 +91,7 @@ module "vpc" {
 module "app" {
     source   = "git::https://github.com/Preetam6126/tf-module-app.git"
     env      = var.env
-    tags     = var.tags
+    tags     = var.tags 
     
     for_each      = var.apps
     component     = each.value["component"]
