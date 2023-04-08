@@ -99,9 +99,9 @@ module "app" {
     instance_type = each.value["instance_type"]
   
   }
-output "vpc" {
-  value = module.vpc
-}
+# output "vpc" {
+#   value = module.vpc
+# }
 
 output "vpc" {
   value = local.db_subnets_ids
