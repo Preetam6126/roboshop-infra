@@ -99,7 +99,7 @@ module "app" {
     bastion_cidr     = var.bastion_cidr
     vpc_id  = module.vpc["main"].vpc_id
     
-    for_each      = var.app
+    for_each      = var.apps
     component     = each.value["component"]
     instance_type = each.value["instance_type"]
     desired_capacity   = each.value["desired_capacity"]
