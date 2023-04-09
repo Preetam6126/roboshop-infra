@@ -133,6 +133,8 @@ alb = {
        max_size           = 4
        min_size           = 1
        subnet_name        = "app"
+       port               = 8080
+       allow_app_to       = "app"
        
       }
        cart = {
@@ -143,7 +145,8 @@ alb = {
        max_size           = 4
        min_size           = 1
        subnet_name        = "app"
-       
+       port               = 8080
+       allow_app_to       = "app"       
       }
       
        user = {
@@ -154,8 +157,10 @@ alb = {
        max_size           = 4
        min_size           = 1
        subnet_name        = "app"
-       
+       port               = 8080
+       allow_app_to       = "app"       
       }
+      
        shipping = {
        
        component     = "shipping"
@@ -164,8 +169,10 @@ alb = {
        max_size           = 4
        min_size           = 1
        subnet_name        = "app"
-       
+       port               = 8080
+       allow_app_to       = "app"       
       }
+      
        payment = {
        
        component     = "payment"
@@ -174,6 +181,8 @@ alb = {
        max_size           = 4
        min_size           = 1
        subnet_name        = "app"
+       port               = 8080
+       allow_app_to       = "app"
        
       }
        frontend = {
@@ -184,6 +193,8 @@ alb = {
        max_size           = 4
        min_size           = 1
        subnet_name        = "web"
+       port               = 80
+       allow_app_to       = "public"
        
       }
     }
