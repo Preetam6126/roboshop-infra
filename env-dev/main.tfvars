@@ -123,7 +123,7 @@ alb = {
    
    }
    
-   app = {
+   apps = {
    
        catalogue = {
        
