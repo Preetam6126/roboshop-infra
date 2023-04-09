@@ -84,7 +84,7 @@ rds = {
 elasticache = {
   main = {
     engine               = "redis"
-    engine_version       = "3.2.10"
+    engine_version       = "6.x"
     num_cache_nodes      = 1
     node_type            = "cache.t3.micro"
     
@@ -104,7 +104,7 @@ alb = {
   
    public = {
    
-     subnet_name = "web"
+     subnet_name = "public"
      name = "public"
      internal = false
      load_balancer_type = "application" 
