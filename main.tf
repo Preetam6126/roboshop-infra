@@ -95,6 +95,8 @@ module "app" {
     env      = var.env
     tags     = var.tags 
     
+    vpc_id  = module.vpc["main"].vpc_id
+    
     for_each      = var.app
     component     = each.value["component"]
     instance_type = each.value["instance_type"]
@@ -108,6 +110,10 @@ module "app" {
 #   value = module.vpc
 # }
 
+# output "vpc" {
+#   value = local.db_subnet_ids
+# }
+
 output "vpc" {
-  value = local.db_subnet_ids
+  value = module.vpc
 }
