@@ -96,7 +96,7 @@ module "app" {
     source   = "git::https://github.com/Preetam6126/tf-module-app.git"
     env      = var.env
     tags     = var.tags 
-    bastion_cidr     = var.bastion_cidr
+    bastion_cidr  = var.bastion_cidr
     vpc_id  = module.vpc["main"].vpc_id
     
     for_each      = var.apps
@@ -105,8 +105,8 @@ module "app" {
     desired_capacity   = each.value["desired_capacity"]
     max_size           = each.value["max_size"]
     min_size           = each.value["min_size"]
-    subnets            = lookup(local.subnet_ids, each.value["subnet_name"], null)
     port               = each.value["port"]
+    subnets            = lookup(local.subnet_ids, each.value["subnet_name"], null)
     allow_app_to       = lookup(local.subnet_cidr, each.value["allow_app_to"], null)
   }
 # output "vpc" {
