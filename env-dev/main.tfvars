@@ -139,6 +139,7 @@ alb = {
        port               = 8080
        allow_app_to       = "app"
        alb                = "private"
+       listener_priority  = 10
        
       }
        cart = {
@@ -152,6 +153,7 @@ alb = {
        port               = 8080
        allow_app_to       = "app"
        alb                = "private"
+       listener_priority  = 11
       }
       
        user = {
@@ -165,6 +167,7 @@ alb = {
        port               = 8080
        allow_app_to       = "app"
        alb                = "private"
+       listener_priority  = 12
       }
       
        shipping = {
@@ -178,6 +181,7 @@ alb = {
        port               = 8080
        allow_app_to       = "app"
        alb                = "private"
+       listener_priority  = 13
       }
       
        payment = {
@@ -191,6 +195,7 @@ alb = {
        port               = 8080
        allow_app_to       = "app"
        alb                = "private"
+       listener_priority  = 14
        
       }
        frontend = {
@@ -204,6 +209,7 @@ alb = {
        port               = 80
        allow_app_to       = "public"
        alb                = "public"
+       listener_priority  = 10
        
       }
     }
