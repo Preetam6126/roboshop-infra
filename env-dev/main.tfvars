@@ -114,7 +114,7 @@ alb = {
    
      }
    
-   Private = {
+   private = {
    
      subnet_name        = "app"
      name               = "private"
