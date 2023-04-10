@@ -114,6 +114,3 @@ output "vpc" {
 #   value = local.db_subnet_ids
 # }
 
-output "vpc" {
-  value = module.vpc
-}
