@@ -1,5 +1,5 @@
 env = "dev"
-bastion_cidr = ["172.31.3.206/32"]
+bastion_cidr = ["172.31.3.206/32"] 
 vpc = {
  main = {
    vpc_cidr = "10.0.0.0/16"
@@ -104,10 +104,11 @@ alb = {
   
    public = {
    
-     subnet_name = "public"
-     name = "public"
-     internal = false
+     subnet_name        = "public"
+     name               = "public"
+     internal           = false
      load_balancer_type = "application" 
+     allow_cidr         = ["0.0.0.0/0"]
    
      }
    
@@ -117,7 +118,7 @@ alb = {
      name               = "private"
      internal           = true
      load_balancer_type = "application"
-     
+     allow_cidr         = ["10.0.2.0/24","10.0.3.0/24","10.0.4.0/24","10.0.5.0/24"]
      
      }
    
@@ -198,4 +199,6 @@ alb = {
        
       }
     }
+      
+      
       
