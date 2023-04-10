@@ -7,9 +7,9 @@ module "vpc" {
   default_vpc_id      = var.default_vpc_id
   
   for_each        = var.vpc 
-  # vpc_cidr        = each.value["vpc_cidr"]
-  # public_subnets  = each.value["public_subnets"]
-  # private_subnets = each.value["private_subnets"]
+  vpc_cidr        = each.value["vpc_cidr"]
+  public_subnets  = each.value["public_subnets"]
+  private_subnets = each.value["private_subnets"]
   }
 
 # module "docdb" {    
