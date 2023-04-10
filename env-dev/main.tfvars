@@ -1,5 +1,7 @@
 env = "dev"
-bastion_cidr = ["172.31.3.206/32"] 
+bastion_cidr = ["172.31.3.206/32"]
+dns_domain = "devops36.shop"
+
 vpc = {
  main = {
    vpc_cidr = "10.0.0.0/16"
@@ -136,6 +138,7 @@ alb = {
        subnet_name        = "app"
        port               = 8080
        allow_app_to       = "app"
+       alb                = "private"
        
       }
        cart = {
@@ -147,7 +150,8 @@ alb = {
        min_size           = 1
        subnet_name        = "app"
        port               = 8080
-       allow_app_to       = "app"       
+       allow_app_to       = "app"
+       alb                = "private"
       }
       
        user = {
@@ -159,7 +163,8 @@ alb = {
        min_size           = 1
        subnet_name        = "app"
        port               = 8080
-       allow_app_to       = "app"       
+       allow_app_to       = "app"
+       alb                = "private"
       }
       
        shipping = {
@@ -171,7 +176,8 @@ alb = {
        min_size           = 1
        subnet_name        = "app"
        port               = 8080
-       allow_app_to       = "app"       
+       allow_app_to       = "app"
+       alb                = "private"
       }
       
        payment = {
@@ -184,6 +190,7 @@ alb = {
        subnet_name        = "app"
        port               = 8080
        allow_app_to       = "app"
+       alb                = "private"
        
       }
        frontend = {
@@ -196,6 +203,7 @@ alb = {
        subnet_name        = "web"
        port               = 80
        allow_app_to       = "public"
+       alb                = "public"
        
       }
     }

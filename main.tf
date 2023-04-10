@@ -86,29 +86,41 @@ module "alb" {
     internal           = each.value["internal"]
     load_balancer_type = each.value["load_balancer_type"]
     subnets            = lookup(local.subnet_ids, each.value["subnet_name"], null)  
-      allow_cidr         = each.value["allow_cidr"]
+    allow_cidr         = each.value["allow_cidr"]
+    
 }
 
 module "app" {  
     source   = "git::https://github.com/Preetam6126/tf-module-app.git"
-    env      = var.env
-    tags     = var.tags 
+    env           = var.env
+    tags          = var.tags 
     bastion_cidr  = var.bastion_cidr
-    vpc_id  = module.vpc["main"].vpc_id
+    dns_domain    = var.dns_domain
+    
+    vpc_id        = module.vpc["main"].vpc_id
+    
     
     for_each      = var.apps
-    component     = each.value["component"]
-    instance_type = each.value["instance_type"]
-    desired_capacity   = each.value["desired_capacity"]
-    max_size           = each.value["max_size"]
-    min_size           = each.value["min_size"]
-    port               = each.value["port"]
-    subnets            = lookup(local.subnet_ids, each.value["subnet_name"], null)
-    allow_app_to       = lookup(local.subnet_cidr, each.value["allow_app_to"], null)
+    component        = each.value["component"]
+    instance_type    = each.value["instance_type"]
+    desired_capacity = each.value["desired_capacity"]
+    max_size         = each.value["max_size"]
+    min_size         = each.value["min_size"]
+    port             = each.value["port"]
+    subnets          = lookup(local.subnet_ids, each.value["subnet_name"], null)
+    allow_app_to     = lookup(local.subnet_cidr, each.value["allow_app_to"], null
+    alb_dns_name     = lookup(lookup(module.alb,each.value["alb"], null), "alb", null), "dns_name", null)
+    
   }
-output "vpc" {
-  value = module.vpc
-}
+  
+  output "alb" {
+    value = module.alb
+  }
+  
+  
+# output "vpc" {
+#   value = module.vpc
+# }
 
 # output "vpc" {
 #   value = local.db_subnet_ids
