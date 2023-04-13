@@ -1,6 +1,6 @@
-env = "dev"
+env          = "dev"
 bastion_cidr = ["172.31.3.206/32"]
-dns_domain = "devops36.shop"
+dns_domain   = "devops36.shop"
 
 vpc = {
  main = {
@@ -59,8 +59,8 @@ vpc = {
 docdb = {
 
   main = {
-    engine = "docdb"
-    engine_version = "4.0.0"
+    engine                  = "docdb"
+    engine_version          = "4.0.0"
     backup_retention_period = 2
     preferred_backup_window = "07:00-09:00"
     skip_final_snapshot     = true
@@ -74,12 +74,12 @@ docdb = {
   
 rds = { 
   main = {
-     engine         = "aurora-mysql"  
-     engine_version = "5.7.mysql_aurora.2.11.2"
+     engine                  = "aurora-mysql"  
+     engine_version          = "5.7.mysql_aurora.2.11.2"
      backup_retention_period = 1
      preferred_backup_window = "07:00-09:00"
-     no_of_instances = 1
-     instance_class = "db.t3.small"
+     no_of_instances         = 1
+     instance_class          = "db.t3.small"
      
   }
 }
@@ -131,8 +131,8 @@ alb = {
    
        catalogue = {
        
-       component     = "catalogue"
-       instance_type = "t3.micro"
+       component          = "catalogue"
+       instance_type      = "t3.micro"
        desired_capacity   = 1
        max_size           = 4
        min_size           = 1
@@ -141,12 +141,13 @@ alb = {
        allow_app_to       = "app"
        alb                = "private"
        listener_priority  = 10
+       parameters         = ["docdb"]
        
       }
        cart = {
        
-       component     = "cart"
-       instance_type = "t3.micro"
+       component          = "cart"
+       instance_type      = "t3.micro"
        desired_capacity   = 1
        max_size           = 4
        min_size           = 1
@@ -155,12 +156,13 @@ alb = {
        allow_app_to       = "app"
        alb                = "private"
        listener_priority  = 11
+       parameters         = ["elasticache"]
       }
       
        user = {
        
-       component     = "user"
-       instance_type = "t3.micro"
+       component          = "user"
+       instance_type      = "t3.micro"
        desired_capacity   = 1
        max_size           = 4
        min_size           = 1
@@ -169,12 +171,13 @@ alb = {
        allow_app_to       = "app"
        alb                = "private"
        listener_priority  = 12
+       parameters         = ["docdb", "elasticache"]
       }
       
        shipping = {
        
-       component     = "shipping"
-       instance_type = "t3.micro"
+       component          = "shipping"
+       instance_type      = "t3.micro"
        desired_capacity   = 1
        max_size           = 4
        min_size           = 1
@@ -183,12 +186,13 @@ alb = {
        allow_app_to       = "app"
        alb                = "private"
        listener_priority  = 13
+       parameters         = []
       }
       
        payment = {
        
-       component     = "payment"
-       instance_type = "t3.micro"
+       component          = "payment"
+       instance_type      = "t3.micro"
        desired_capacity   = 1
        max_size           = 4
        min_size           = 1
@@ -197,12 +201,13 @@ alb = {
        allow_app_to       = "app"
        alb                = "private"
        listener_priority  = 14
+       parameters         = []
        
       }
        frontend = {
        
-       component     = "frontend"
-       instance_type = "t3.micro"
+       component          = "frontend"
+       instance_type      = "t3.micro"
        desired_capacity   = 1
        max_size           = 4
        min_size           = 1
@@ -211,6 +216,7 @@ alb = {
        allow_app_to       = "public"
        alb                = "public"
        listener_priority  = 10
+       parameters         = []
        
       }
     }
