@@ -189,7 +189,7 @@ alb = {
        allow_app_to       = "app"
        alb                = "private"
        listener_priority  = 13
-       parameters         = [rds]
+       parameters         = ["rds"]
       }
       
        payment = {
