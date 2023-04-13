@@ -76,11 +76,16 @@ module "rabbitmq" {
   source   = "git::https://github.com/Preetam6126/tf-module-rabbitmq.git"
   env      = var.env
   tags     = var.tags
-  
+  vpc_id      = module.vpc["main"].vpc_id
   subnet_ids              = local.db_subnet_ids
+  
+    bastion_cidr  = var.bastion_cidr
+    dns_domain    = var.dns_domain
   
   for_each                = var.rabbitmq  
   instance_type           = each.value["instance_type"]
+  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
+  
 }
 
 module "alb" {  
