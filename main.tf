@@ -108,7 +108,7 @@ module "app" {
     depends_on = [module.vpc, module.docdb, module.rds, module.elasticache, module.alb, module.rabbitmq]
     source   = "git::https://github.com/Preetam6126/tf-module-app.git"
     env           = var.env
-    tags          = var.tags 
+    tags          = var.tags  
     bastion_cidr  = var.bastion_cidr
     dns_domain    = var.dns_domain
     
