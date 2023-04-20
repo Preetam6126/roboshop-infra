@@ -162,7 +162,7 @@ resource "aws_spot_instance_request" "load-runner" {
 
   tags   = merge(
     var.tags,
-    { Name  = "${var.env}-load-runner" }
+    { Name  = "load-runner" }
    )
 }
 
