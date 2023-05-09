@@ -12,81 +12,81 @@ module "vpc" {
   private_subnets = each.value["private_subnets"]
   }
 
-module "docdb" {    
+# module "docdb" {    
 
-  source   = "git::https://github.com/Preetam6126/tf-module-docdb.git"
-  env      = var.env
-  tags     = var.tags
+#   source   = "git::https://github.com/Preetam6126/tf-module-docdb.git"
+#   env      = var.env
+#   tags     = var.tags
   
-  subnet_ids  = local.db_subnet_ids  
-  vpc_id      = module.vpc["main"].vpc_id
+#   subnet_ids  = local.db_subnet_ids  
+#   vpc_id      = module.vpc["main"].vpc_id
   
-  for_each = var.docdb    
-  engine                     = each.value["engine"]
-  engine_version             = each.value["engine_version"]
-  backup_retention_period    = each.value["backup_retention_period"]
-  preferred_backup_window    = each.value["preferred_backup_window"]
-  skip_final_snapshot        = each.value["skip_final_snapshot"]
-  no_of_instances            = each.value["no_of_instances"]
-  instance_class             = each.value["instance_class"]
-  allow_subnets               = lookup(local.subnet_cidr, each.value["allow_subnets"], null)  
+#   for_each = var.docdb    
+#   engine                     = each.value["engine"]
+#   engine_version             = each.value["engine_version"]
+#   backup_retention_period    = each.value["backup_retention_period"]
+#   preferred_backup_window    = each.value["preferred_backup_window"]
+#   skip_final_snapshot        = each.value["skip_final_snapshot"]
+#   no_of_instances            = each.value["no_of_instances"]
+#   instance_class             = each.value["instance_class"]
+#   allow_subnets               = lookup(local.subnet_cidr, each.value["allow_subnets"], null)  
 
-}
+# }
 
-module "rds" {    
+# module "rds" {    
 
-  source   = "git::https://github.com/Preetam6126/tf-module-rds.git"
-  env      = var.env
-  tags     = var.tags
+#   source   = "git::https://github.com/Preetam6126/tf-module-rds.git"
+#   env      = var.env
+#   tags     = var.tags
   
-  vpc_id                  = module.vpc["main"].vpc_id
-  subnet_ids              = local.db_subnet_ids
+#   vpc_id                  = module.vpc["main"].vpc_id
+#   subnet_ids              = local.db_subnet_ids
   
-  for_each = var.rds  
-  engine                  = each.value["engine"]
-  engine_version          = each.value["engine_version"]
-  backup_retention_period = each.value["backup_retention_period"]
-  preferred_backup_window = each.value["preferred_backup_window"]
-  no_of_instances         = each.value["no_of_instances"]
-  instance_class          = each.value["instance_class"]
-  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
-}
+#   for_each = var.rds  
+#   engine                  = each.value["engine"]
+#   engine_version          = each.value["engine_version"]
+#   backup_retention_period = each.value["backup_retention_period"]
+#   preferred_backup_window = each.value["preferred_backup_window"]
+#   no_of_instances         = each.value["no_of_instances"]
+#   instance_class          = each.value["instance_class"]
+#   allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
+# }
 
-module "elasticache" {    
+# module "elasticache" {    
 
-  source   = "git::https://github.com/Preetam6126/tf-module-elasticache.git"
-  env      = var.env
-  tags     = var.tags
+#   source   = "git::https://github.com/Preetam6126/tf-module-elasticache.git"
+#   env      = var.env
+#   tags     = var.tags
   
-  vpc_id      = module.vpc["main"].vpc_id
+#   vpc_id      = module.vpc["main"].vpc_id
   
-  subnet_ids              = local.db_subnet_ids
+#   subnet_ids              = local.db_subnet_ids
   
-  for_each                = var.elasticache  
-  engine                  = each.value["engine"]
-  engine_version          = each.value["engine_version"]
-  num_cache_nodes         = each.value["num_cache_nodes"]
-  node_type               = each.value["node_type"]
-  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
-}
+#   for_each                = var.elasticache  
+#   engine                  = each.value["engine"]
+#   engine_version          = each.value["engine_version"]
+#   num_cache_nodes         = each.value["num_cache_nodes"]
+#   node_type               = each.value["node_type"]
+#   allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
+# }
 
 
-module "rabbitmq" {    
+# module "rabbitmq" {    
 
-  source   = "git::https://github.com/Preetam6126/tf-module-rabbitmq.git"
-  env      = var.env
-  tags     = var.tags
-  vpc_id      = module.vpc["main"].vpc_id
-  subnet_ids              = local.db_subnet_ids
+#   source   = "git::https://github.com/Preetam6126/tf-module-rabbitmq.git"
+#   env      = var.env
+#   tags     = var.tags
+#   vpc_id      = module.vpc["main"].vpc_id
+#   subnet_ids              = local.db_subnet_ids
   
-    bastion_cidr  = var.bastion_cidr
-    dns_domain    = var.dns_domain
+#     bastion_cidr  = var.bastion_cidr
+#     dns_domain    = var.dns_domain
   
-  for_each                = var.rabbitmq  
-  instance_type           = each.value["instance_type"]
-  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
+#   for_each                = var.rabbitmq  
+#   instance_type           = each.value["instance_type"]
+#   allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
   
-}
+# }
 
 module "alb" {  
 
@@ -105,7 +105,7 @@ module "alb" {
 
 module "app" {  
     
-    depends_on = [module.vpc, module.docdb, module.rds, module.elasticache, module.alb, module.rabbitmq]
+    # depends_on = [module.vpc, module.docdb, module.rds, module.elasticache, module.alb, module.rabbitmq]
     source   = "git::https://github.com/Preetam6126/tf-module-app.git"
     env           = var.env
     tags          = var.tags  
@@ -132,14 +132,14 @@ module "app" {
     
   }
   
-  output "alb" {
-    value = module.elasticache
-  }
+#   output "alb" {
+#     value = module.elasticache
+#   }
   
   
-output "vpc" {
-  value = module.vpc
-}
+# output "vpc" {
+#   value = module.vpc
+# }
 
 # output "vpc" {
 #   value = local.db_subnet_ids
@@ -148,25 +148,25 @@ output "vpc" {
 
 ###Load Runner
 
-resource "aws_spot_instance_request" "load-runner" {
-  ami           = data.aws_ami.ami.id
-  instance_type = "t3.medium"
-  wait_for_fulfillment = true
-  vpc_security_group_ids = ["allow-all"]
+# resource "aws_spot_instance_request" "load-runner" {
+#   ami           = data.aws_ami.ami.id
+#   instance_type = "t3.medium"
+#   wait_for_fulfillment = true
+#   vpc_security_group_ids = ["allow-all"]
 
-  tags   = merge(
-    var.tags,
-    { Name  = "load-runner" }
-   )
-}
+#   tags   = merge(
+#     var.tags,
+#     { Name  = "load-runner" }
+#   )
+# }
 
 
-resource "aws_ec2_tag" "name-tag" {
+# resource "aws_ec2_tag" "name-tag" {
   
-  key         = "Name"
-  resource_id = aws_spot_instance_request.load-runner.spot_instance_id
-  value       = "load-runner"
-}
+#   key         = "Name"
+#   resource_id = aws_spot_instance_request.load-runner.spot_instance_id
+#   value       = "load-runner"
+# }
 
 # resource "null_resource" "load_gen" {
   
