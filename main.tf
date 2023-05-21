@@ -185,7 +185,7 @@ output "vpc" {
 #     ]
 #   }
 # }
-*/
+
 
   module "minikube" {
   source = "github.com/scholzj/terraform-aws-minikube"
@@ -195,7 +195,7 @@ output "vpc" {
   aws_instance_type = "t3.medium"
   ssh_public_key    = "~/.ssh/id_rsa.pub"
   aws_subnet_id     = lookup(local.subnet_ids, "public", null)[0]
-  hosted_zone       = "Z099042325KVJ8P6CC8JI"
+  hosted_zone       = "devops36.shop"
   hosted_zone_private = false
 
   tags = {
@@ -216,4 +216,17 @@ output "MINIKUBE_SERVER" {
 
 output "KUBE_CONFIG" {
   value = "scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig ~/.kube/config"
+}
+
+*/
+
+module "eks" {
+  source             = "github.com/r-devops/tf-module-eks"
+  ENV                = var.env
+  PRIVATE_SUBNET_IDS = lookup(local.subnet_ids, "app", null)
+  PUBLIC_SUBNET_IDS  = lookup(local.subnet_ids, "public", null)
+  DESIRED_SIZE       = 1
+  MAX_SIZE           = 1
+  MIN_SIZE           = 1
+  
 }
